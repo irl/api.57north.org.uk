@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>api.57north.org.uk Reference</title>
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["shell","ruby","python"]);
+          setupLanguages(["shell"]);
         });
       </script>
   </head>
@@ -29,8 +29,6 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -39,87 +37,183 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://github.com/tripit/slate'>Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the 57North Hacklab API! This is a work in progress and currently it is only a draft API specification.</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>This example API documentation page was created with
+<a href="https://github.com/tripit/slate">Slate</a>. If you would like to suggest changes
+to the API, this can be done via pull request to the <a href="https://github.com/irl/api.57north.org.uk">respository on
+GitHub</a>.</p>
 
-<p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+          <h1 id='authentication'>Authentication</h1><pre><code class="highlight shell"><span class="c"># With the shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"https://api.57north.org.uk/api/&lt;endpoint&gt;"</span>
+  -H <span class="s2">"Authorization: &lt;apikey&gt;"</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code class="prettyprint">&lt;apikey&gt;</code> with your API key.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>The API uses API keys to allow access to the API and expects for the API key to
+be included in all API requests that require authentication in a header that
+looks like the following:</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p><code class="prettyprint">Authorization: &lt;apikey&gt;</code></p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<aside class="notice">
+You must replace <code>&lt;apikey&gt;</code> with your personal API key.
+</aside>
 
-<p><aside class="notice">
-You must replace <code class="prettyprint">meowmeowmeow</code> with your personal API key.
-</aside></p>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+          <h1 id='spaceapi'>SpaceAPI</h1>
+<p>The purpose of the Space API is to define a unified specification across the
+hackerspaces that can be used to expose information to web apps or any other
+application.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<p>You can find more information about SpaceAPI at
+<a href="http://spaceapi.net/">spaceapi.net</a>.</p>
+<h2 id='fetch-the-spaceapi-json'>Fetch the SpaceAPI JSON</h2><pre><code class="highlight shell">curl <span class="s2">"https://api.57north.org.uk/api/spaceapi"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"api"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.13"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"irc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"irc://irc.freenode.net/#57N"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"issue_mail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"irl@sdf.org"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ml"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57north-discuss@lists.57north.co"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+441224583491"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"twitter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@57NorthHacklab"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contact@57north.co"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unlocked the door"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nordin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1421951635</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"door-unlock"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unlocked the door"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Derecho"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1421939544</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"door-unlock"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unlocked the door"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Derecho"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1421934955</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"door-unlock"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unlocked the door"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Derecho"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1421846364</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"door-unlock"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unlocked the door"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hibby"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1421621786</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"door-unlock"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unlocked the door"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hibby"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1421621780</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"door-unlock"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unlocked the door"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hibby"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1421621779</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"door-unlock"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unlocked the door"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hibby"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1421621779</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"door-unlock"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unlocked the door"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hibby"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1421621779</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"door-unlock"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unlocked the door"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hibby"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1421621778</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"door-unlock"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"issue_report_channels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"issue_mail"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35a Union Street, Aberdeen, United Kingdom"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">57.14731</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lon"</span><span class="p">:</span><span class="w"> </span><span class="mf">-2.095607</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://bodaegl.ormiret.com/foo/57Nlogo.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"space"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57North Hacklab"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"closed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://hackerdeen.org/static/closed.png"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://hackerdeen.org/static/open.png"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"lastchange"</span><span class="p">:</span><span class="w"> </span><span class="mi">1422139146</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Space is lonely"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trigger_person"</span><span class="p">:</span><span class="w"> </span><span class="s2">"irl"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://57north.co/"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sensors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"total_member_count"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"January 2015"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"December 2014"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"November 2014"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"feeds"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"calendar"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ical"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://opentechcalendar.co.uk/api1/group/151/events.ical"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"wiki"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"atom"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://57north.co/w/index.php?title=Special:RecentChanges&amp;feed=atom"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"projects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"http://57north.co/wiki/Doorbot"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"http://57north.co/wiki/Hackerdeenbot"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"http://57north.co/wiki/RIPE_Atlas"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"http://57north.co/wiki/SpaceRDF"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves all kittens.</p>
+<p>This endpoint retrieves the SpaceAPI JSON.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens</code></p>
+<p><code class="prettyprint">GET https://api.57north.org.uk/api/spaceapi</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -129,68 +223,189 @@ You must replace <code class="prettyprint">meowmeowmeow</code> with your persona
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
+<td>simple</td>
 <td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>If set to true, the returned JSON will only contain base information, contact information and the space status.</td>
 </tr>
 </tbody></table>
 
-<p><aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside></p>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<aside class="notice">
+Please use the <code>simple</code> parameter if you do not need the extra
+information. This helps to reduce the bandwidth used by our server.
+</aside>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+<aside class="success">
+This endpoint does not require authentication.
+</aside>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens/3"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+          <h1 id='space-status'>Space Status</h1><h2 id='fetch-current-status'>Fetch current status</h2><pre><code class="highlight shell">curl <span class="s2">"https://api.57north.org.uk/api/status/current"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hacking in progress"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1422139146"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"trigger_person"</span><span class="p">:</span><span class="w"> </span><span class="s2">"irl"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves a specific kitten.</p>
-
-<p><aside class="warning">If you&rsquo;re not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside></p>
+<p>This endpoint retrieves the current space status.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p><code class="prettyprint">https://api.57north.org.uk/api/status/current</code></p>
+
+<aside class="success">
+This endpoint does not require authentication.
+</aside>
+<h2 id='fetch-recent-statuses'>Fetch recent statuses</h2><pre><code class="highlight shell">curl <span class="s2">"https://api.57north.org.uk/api/status/recent"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">[{</span><span class="w">
+  </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hacking not in progress"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1422139146"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"trigger_person"</span><span class="p">:</span><span class="w"> </span><span class="s2">"irl"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hacking in progress"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1422138146"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"trigger_person"</span><span class="p">:</span><span class="w"> </span><span class="s2">"irl"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hacking not in progress"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1422137146"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"trigger_person"</span><span class="p">:</span><span class="w"> </span><span class="s2">"irl"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hacking in progress"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1422136146"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"trigger_person"</span><span class="p">:</span><span class="w"> </span><span class="s2">"irl"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hacking not in progress"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1422135146"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"trigger_person"</span><span class="p">:</span><span class="w"> </span><span class="s2">"irl"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves a number of recent statuses. By default it will
+retrieve the latest 5 statuses.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">https://api.57north.org.uk/api/status/recent</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the cat to retrieve</td>
+<td>count</td>
+<td>5</td>
+<td>The number of statuses to return. (Maximum allowed: 20)</td>
+</tr>
+<tr>
+<td>type</td>
+<td>both</td>
+<td>The type of statuses to return. Allowed values are: <code class="prettyprint">open</code>, <code class="prettyprint">closed</code> and <code class="prettyprint">both</code>.</td>
 </tr>
 </tbody></table>
 
-          <h1 id='errors'>Errors</h1>
-<p><aside class="notice">This error section is stored in a separate file in <code class="prettyprint">includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the <code class="prettyprint">includes</code> folder and add them to the top of your <code class="prettyprint">index.md</code>&rsquo;s frontmatter. Files are included in the order listed.</aside></p>
+<aside class="success">
+This endpoint does not require authentication.
+</aside>
 
-<p>The Kittn API uses the following error codes:</p>
+          <h1 id='space-music'>Space Music</h1>
+<p>Music in the space is controlled by a Raspberry Pi running MPD. You can find
+more information on this system <a href="https://wiki.57north.org.uk/index.php/Projects:PiMPD">on the
+wiki</a>. The following
+API endpoints give access to information about this MPD instance.</p>
+<h2 id='fetch-current-track'>Fetch current track</h2><pre><code class="highlight shell">curl <span class="s2">"https://api.57north.org.uk/api/music/current"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"album"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best Of"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"artist"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Various Artists"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"track"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Track 1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves information about the currently playing track.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">https://api.57north.org.uk/api/music/current</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>blame</td>
+<td>false</td>
+<td>Include a user to blame for the music.</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>false</td>
+<td>Include the current volume level.</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+This endpoint does not require authentication.
+</aside>
+
+          <h1 id='space-infoscreen'>Space Infoscreen</h1><h2 id='fetch-screenshot'>Fetch Screenshot</h2><pre><code class="highlight shell">curl <span class="s2">"https://api.57north.org.uk/api/infoscreen/screenshot"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns a PNG image showing the current view of the
+infoscreen.</p>
+</blockquote>
+
+<p>This endpoint retrieves a screenshot from the infoscreen. If the infoscreen is
+currently unavailable, an old screenshot will be retrieved instead.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">https://api.57north.org.uk/api/infoscreen/screenshot</code></p>
+
+<aside class="warning">
+This is not a bandwidth friendly endpoint. Please do not call it more than
+necessary, and use caching as appropriate. If you&rsquo;re calling this more than
+once an hour on average, you&rsquo;re calling this too often.
+</aside>
+
+          <h1 id='space-toys'>Space Toys</h1><h2 id='cards-against-hackerspace'>Cards Against Hackerspace</h2><pre><code class="highlight shell">curl <span class="s2">"https://api.57north.org.uk/api/cah"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"wisdom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Welcome to the internet of multimeter"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves wisdom from the cards against hackerspace generator.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">https://api.57north.org.uk/api/cah</code></p>
+
+          <h1 id='errors'>Errors</h1>
+<p>The API uses the following error codes:</p>
 
 <table><thead>
 <tr>
@@ -208,39 +423,39 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Forbidden &ndash; Your API key does not have permissions to perform the requested action</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>Not Found &ndash; You requested something that doesn&rsquo;t exist</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>Method Not Allowed &ndash; Your request used a method that is invalid</td>
 </tr>
 <tr>
 <td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+<td>Not Acceptable &ndash; You requested a format not supported by the endpoint</td>
 </tr>
 <tr>
 <td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+<td>Gone &ndash; You requested a resource that is no longer available</td>
 </tr>
 <tr>
 <td>418</td>
-<td>I&rsquo;m a teapot</td>
+<td>I&rsquo;m a Teapot &ndash; I&rsquo;m a teapot</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slown down!</td>
+<td>Too Many Requests &ndash; Slown down!</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+<td>Internal Server Error &ndash; There is a problem with the server. Try again later.</td>
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>Service Unavailable &ndash; The server is temporarially offline. Try again later.</td>
 </tr>
 </tbody></table>
 
@@ -248,8 +463,6 @@ Remember — a happy kitten is an authenticated kitten!
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
           </div>
       </div>
     </div>
