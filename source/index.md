@@ -11,6 +11,7 @@ includes:
   - authentication
   - spaceapi
   - status
+  - announcements
   - music
   - infoscreen
   - toys
