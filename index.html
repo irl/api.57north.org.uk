@@ -325,6 +325,50 @@ retrieve the latest 5 statuses.</p>
 This endpoint does not require authentication.
 </aside>
 
+          <h1 id='space-announcements'>Space Announcements</h1>
+<p>Announcements are published on the 57North <a href="http://lists.57north.co/listinfo/57north-announce">Announcements Mailing
+List</a>.</p>
+<h2 id='fetch-recent-announcements'>Fetch recent announcements</h2><pre><code class="highlight shell">curl <span class="s2">"https://api.57north.org.uk/api/announcements/recent"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">[{</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tuesday"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tue Jan 27 10:47:01 UTC 2015"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://lists.57north.co/pipermail/57north-announce/2015-January/000106.html"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tuesday"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tue Jan 27 10:47:05 UTC 2015"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://lists.57north.co/pipermail/57north-announce/2015-January/000107.html"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves recent announcements from the announcements mailing
+list archives.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">https://api.57north.org.uk/api/announcements/recent</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>count</td>
+<td>5</td>
+<td>Number of recent announcements to return (Maximum: 15)</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+This endpoint does not require authentication.
+</aside>
+
           <h1 id='space-music'>Space Music</h1>
 <p>Music in the space is controlled by a Raspberry Pi running MPD. You can find
 more information on this system <a href="https://wiki.57north.org.uk/index.php/Projects:PiMPD">on the
